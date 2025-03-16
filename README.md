@@ -1,3 +1,4 @@
 # GenerativeAgents
 
-Test test
+pip install openai
+pip install python-dotenv
