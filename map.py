@@ -60,7 +60,7 @@ class Map:
 
         """Sets bushes"""
         self.set_tile(5,7,Bush)
-        self.set_tile(6,5,Bush)
+        self.set_tile(5,5,Bush)
         self.set_tile(8,5,Bush)
         self.set_tile(10,5,Bush)
         self.set_tile(13,5,Bush)
@@ -72,6 +72,18 @@ class Map:
         self.fill_tiles(14,14,19,1,Sand)
         self.fill_tiles(15,15,17,1,Sand)
         self.fill_tiles(16,16,15,1,Sand)
+
+        """Sets Beds"""
+        self.set_tile(1,6,BedTop) # Bed #5
+        self.set_tile(1,7,BedBottom)
+        self.set_tile(1,1,BedTop) # Bed #1
+        self.set_tile(1,2,BedBottom)
+        self.set_tile(7,1,BedTop) # Bed #2
+        self.set_tile(7,2,BedBottom)
+        self.set_tile(12,1,BedTop) # Bed #3
+        self.set_tile(12,2,BedBottom)
+        self.set_tile(17,1,BedTop) # Bed #4
+        self.set_tile(17,2,BedBottom)
         
 
     def display(self):
