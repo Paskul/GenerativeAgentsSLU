@@ -54,3 +54,19 @@ class Floor(Tile):
 class Sand(Tile):
     def __init__(self, symbol = ':',walkable=True):
         super().__init__("Sand", symbol=symbol, walkable=walkable)
+
+class BedTop(Tile):
+    def __init__(self, symbol = '0',interactable=True):
+        super().__init__("BedTop", symbol=symbol, interactable=interactable)
+
+class BedBottom(Tile):
+    def __init__(self, symbol = '0'):
+        super().__init__("BedBottom", symbol=symbol)
+
+class BenchTop(Tile):
+    def __init__(self, symbol = '%',interactable=True):
+        super().__init__("BenchTop", symbol=symbol, interactable=interactable)
+
+class BenchBottom(Tile):
+    def __init__(self, symbol = '0',interactable=True):
+        super().__init__("BenchBottom", symbol=symbol, interactable=interactable)
