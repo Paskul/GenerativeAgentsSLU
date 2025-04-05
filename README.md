@@ -7,3 +7,11 @@ Current required commands for package installs:
 pip install openai
 pip install python-dotenv
 ```
+
+to run, make the .env, and then move to the terminal to the directory of the parent folder to GenerativeAgents (ie, parentFolder/GenerativeAgents)
+
+Then run this code from the parent folder, example being C:\Users\pascal\Desktop\code\parentFolder>:
+
+```
+python -m GenerativeAgents.ui.initial_screen
+```
