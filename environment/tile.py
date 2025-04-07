@@ -26,7 +26,7 @@ class Tile:
     def display_image(self, canvas: tk.Canvas, x: int, y: int, tile_size=32):
         """Resize and display this tile’s image on the canvas at (x, y)."""
         if self.image:
-            img = self.image.resize((tile_size, tile_size), Image.ANTIALIAS)
+            img = self.image.resize((tile_size, tile_size), Image.Resampling.LANCZOS)
             tk_img = ImageTk.PhotoImage(img)
             canvas.create_image(x, y, image=tk_img, anchor='nw')
             # Save reference to avoid garbage collection.
