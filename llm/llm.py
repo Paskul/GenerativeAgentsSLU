@@ -40,7 +40,7 @@ def generate_action_plan(sim_time, sim_vision, agent, prev_action_plan=""):
     )
     try:
         completion = client.chat.completions.create(
-            model="gpt-4o",
+            model="gpt-4o-mini",
             messages=[{"role": "developer", "content": message}]
         )
         action_plan = completion.choices[0].message.content.strip()
