@@ -37,6 +37,8 @@ def run_simulation():
         sim_manager.render_agents(canvas, tile_size=tile_size)
         # Schedule the next simulation step after all LLM calls are complete.
         sim_root.after(500, simulation_step)
+        
+    sim_root.after(1000, lambda: sim_manager.render_overlay(canvas))
 
     # Start the simulation loop.
     sim_root.after(500, simulation_step)
