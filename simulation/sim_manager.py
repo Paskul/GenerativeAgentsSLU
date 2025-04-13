@@ -1,6 +1,7 @@
 import time
 import json
 from datetime import timedelta
+import tkinter as tk
 from GenerativeAgents.agents.agent import Agent
 from GenerativeAgents.environment.map import Map
 from GenerativeAgents.simulation.time_manager import TimeManager
@@ -80,6 +81,14 @@ class SimulationManager:
                 tags="agent_layer"
             )
 
+    def render_overlay(self, canvas):
+        def on_exit():
+            self.active = False  # Stop the simulation loop
+            canvas.master.destroy()  # Close the window
+            # Create Exit button and place it in the top-right
+        exit_button = tk.Button(canvas.master, text="Exit", command=on_exit, bg="red", fg="white")
+        exit_button.place(x=10,y=10)
+        
     def run(self, max_steps=None):
         while self.active:
             self.step()
