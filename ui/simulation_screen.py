@@ -27,8 +27,11 @@ def run_simulation():
 
     # Create some agents.
     agents = [
-        Agent(name="Alice", role="Farmer", age=30, personality="cheerful", x=5, y=5, vision_radius=5),
-        Agent(name="Bob", role="Merchant", age=40, personality="curious", x=10, y=15, vision_radius=5)
+        Agent("Ada", "Farmer", 29, "Smart", 2, 2),
+        Agent("Gus", "Fisherman", 32, "Shy", 5, 5),
+        Agent("Clara", "Shop Owner", 40, "Friendly", 8, 2),
+        Agent("Otto", "Shop Owner", 4, "Persuasive", 10, 6),
+        Agent("Olive", "Artisan", 30, "Creative", 17, 8),
     ]
 
     # Create the simulation manager with a timestep of 10 minutes.
