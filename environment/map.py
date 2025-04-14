@@ -68,6 +68,46 @@ class Map:
         self.fill_tiles(15, 15, 17, 1, Sand)
         self.fill_tiles(16, 16, 15, 1, Sand)
 
+    def get_layout_summary(self):
+        """
+        Provides a detailed overview of this 48x27 map, specifying
+        major features and their coordinates.
+        
+        Coordinate System:
+        - x ranges from 0 (left) to 47 (right)
+        - y ranges from 0 (top) to 26 (bottom)
+        - (x=0, y=0) is top-left corner
+
+        Features:
+        - River (Water): spans rows y=11..13 (full width x=0..47).
+        - Bridges:
+            1) x=8..10, y=11..13
+            2) x=37..39, y=11..13
+        - Apartments (top-left):
+            - Large walled area from x=0..20, y=0..4
+            - Another walled block from x=0..4, y=5..9
+            - Floors at x=1..4,7..9,12..14,17..19 (y=1..3) and x=1..3 (y=6..8)
+        - Store (top-right):
+            - Walls from x=33..46, y=1..9
+            - Floors from x=34..45, y=2..8
+        - Farm Patches (Soil) near bottom:
+            - (x=1..5, y=15..19), (x=1..5, y=21..25),
+                (x=7..11, y=21..25), (x=13..17, y=21..25), (x=19..23, y=21..25)
+        - Beach (Sand) around x=14..32, y=14..16 (middle-bottom).
+        - Bushes scattered near (x=6..20, y=5..7), e.g., x=5,6,8,10,13,15,18,20 (y=5 or y=7).
+        - Paths connect apartments, store, and farmland.
+        - Grass is the base tile everywhere else.
+        """
+        return (
+            "This map is 48 tiles wide (x=0..47) and 27 tiles tall (y=0..26). "
+            "Rows y=11..13 contain a river that spans the entire width. Bridges cross the river at x=8..10 and x=37..39, y=11..13. "
+            "Apartments occupy the top-left, with walls in x=0..20, y=0..4 and x=0..4, y=5..9, plus floors at x=1..4,7..9,12..14,17..19 (y=1..3), etc. "
+            "A store is at x=33..46, y=1..9, with floors at x=34..45, y=2..8. "
+            "Farm patches (Soil) appear near the bottom, e.g. x=1..5,y=15..19 and x=1..5,y=21..25, among others. A sand beach lies around x=14..32, y=14..16. "
+            "Bushes are placed near x=6..20,y=5..7, and multiple paths connect these areas. "
+            "Grass is the default tile, water forms the river, soil for farmland, sand for the beach, walls/floors for buildings, and bushes/paths/bridges in fixed positions."
+        )
+
     def display(self):
         for row in self.grid:
             print(''.join(tile.symbol for tile in row))
