@@ -31,7 +31,10 @@ def run_simulation():
         Agent("Gus", "Fisherman", 32, "Shy", 5, 5),
         Agent("Clara", "Shop Owner", 40, "Friendly", 8, 2),
         Agent("Otto", "Shop Owner", 4, "Persuasive", 10, 6),
+        Agent("Alan", "Farmer", 57, "Grumpy", 14, 4),
         Agent("Olive", "Artisan", 30, "Creative", 17, 8),
+        Agent("Mavis", "Farmer", 25, "Bubbly", 20, 10),
+        Agent("Finn", "Student", 9, "Hyper", 24, 12)
     ]
 
     # Create the simulation manager with a timestep of 10 minutes.
