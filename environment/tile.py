@@ -121,3 +121,39 @@ class Sand(Tile):
             symbol=symbol,
             image_path=os.path.join(ASSETS_DIR, "sand.png")
         )
+
+class BedTop(Tile):
+    def __init__(self, symbol = '0'):
+        super().__init__(
+            tile_type="BedTop",
+            walkable=False,
+            symbol=symbol,
+            image_path=os.path.join(ASSETS_DIR, "bedtop.png")
+        )
+
+class BedBottom(Tile):
+    def __init__(self, symbol = '0'):
+        super().__init__(
+            tile_type="BedBottom",
+            walkable=False,
+            symbol=symbol,
+            image_path=os.path.join(ASSETS_DIR, "bedbottom.png")
+        )
+
+class BenchTop(Tile):
+    def __init__(self, symbol = '%'):
+        super().__init__(
+            tile_type="BenchTop", 
+            walkable=False,
+            symbol=symbol, 
+            image_path=os.path.join(ASSETS_DIR, "benchtop.png")
+        )
+
+class BenchBottom(Tile):
+    def __init__(self, symbol = '0'):
+        super().__init__(
+            tile_type="BenchBottom", 
+            walkable=False,
+            symbol=symbol, 
+            image_path=os.path.join(ASSETS_DIR, "benchbottom.png")
+        )
