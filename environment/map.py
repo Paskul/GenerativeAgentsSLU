@@ -1,6 +1,6 @@
 # environment/map.py
 
-from .tile import Grass, Water, Soil, Bridge, Bush, Wall, Path, Floor, Sand
+from .tile import Grass, Water, Soil, Bridge, Bush, Wall, Path, Floor, Sand, BedTop, BedBottom, BenchTop, BenchBottom
 
 class Map:
     def __init__(self, width=48, height=27):
@@ -67,6 +67,17 @@ class Map:
         self.fill_tiles(14, 14, 19, 1, Sand)
         self.fill_tiles(15, 15, 17, 1, Sand)
         self.fill_tiles(16, 16, 15, 1, Sand)
+        # Beds
+        self.set_tile(1,6,BedTop) # Bed #5
+        self.set_tile(1,7,BedBottom)
+        self.set_tile(1,1,BedTop) # Bed #1
+        self.set_tile(1,2,BedBottom)
+        self.set_tile(7,1,BedTop) # Bed #2
+        self.set_tile(7,2,BedBottom)
+        self.set_tile(12,1,BedTop) # Bed #3
+        self.set_tile(12,2,BedBottom)
+        self.set_tile(17,1,BedTop) # Bed #4
+        self.set_tile(17,2,BedBottom)
 
     def get_layout_summary(self):
         """
