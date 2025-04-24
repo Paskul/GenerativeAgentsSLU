@@ -16,10 +16,16 @@ Then run that .ttf file, all it does is install the font locally on your compute
 
 To run, make the .env (for devs, found in our Google Drive!!), and then move to the terminal to the directory of the parent folder to GenerativeAgents (ie, parentFolder/GenerativeAgents)
 
-Then run this code from the parent folder,
-for example being C:\Users\pascal\Desktop\code\parentFolder
-NOT C:\Users\pascal\Desktop\code\parentFolder\GenerativeAgents !!
+Make sure you are in the parent folder, as an example of
+```
+C:\Users\pascal\Desktop\code\parentFolder
+```
+NOT
+```
+C:\Users\pascal\Desktop\code\parentFolder\GenerativeAgents
+```
 
+Then run this code to start the program:
 ```
 python -m GenerativeAgents.ui.initial_screen
 ```
