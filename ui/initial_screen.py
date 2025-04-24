@@ -52,17 +52,17 @@ def run_initial_screen():
     frame = tk.Frame(root)
     frame.pack(side="top", pady=60)
     
-    exit_button = tk.Button(root, text="Exit", command=lambda: exit_application(root), font=('Arial', 10))
+    exit_button = tk.Button(root, text="Exit", command=lambda: exit_application(root), font=('Pixellari', 10))
     exit_button.place(x=10, y=10)
     
-    help_button = tk.Button(root, text="?", command=show_help, font=('Arial', 14), width=2, height=1)
+    help_button = tk.Button(root, text="?", command=show_help, font=('Pixellari', 14), width=2, height=1)
     help_button.place(x=root.winfo_width() - help_button.winfo_width() - 10, y=10)
     
     new_sim_button = tk.Button(
         frame,
         text="New Simulation",
         command=lambda: (root.destroy(), run_simulation()),
-        font=('Arial', 14),
+        font=('Pixellari', 14),
         width=20,
         height=2
     )
@@ -72,7 +72,7 @@ def run_initial_screen():
         frame,
         text="Load Simulation",
         command=load_simulation,
-        font=('Arial', 14),
+        font=('Pixellari', 14),
         width=20,
         height=2
     )

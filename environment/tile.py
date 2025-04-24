@@ -26,7 +26,7 @@ class Tile:
     def display_image(self, canvas: tk.Canvas, x: int, y: int, tile_size=32):
         """Resize and display this tile’s image on the canvas at (x, y)."""
         if self.image:
-            img = self.image.resize((tile_size, tile_size), Image.LANCZOS)
+            img = self.image.resize((tile_size, tile_size), Image.ANTIALIAS)
             tk_img = ImageTk.PhotoImage(img)
             canvas.create_image(x, y, image=tk_img, anchor='nw')
             # Save reference to avoid garbage collection.
@@ -60,10 +60,10 @@ class Water(Tile):
         )
 
 class Soil(Tile):
-    def __init__(self, symbol='#', walkable=False):
+    def __init__(self, symbol='#', walkable=True):
         super().__init__(
             tile_type="Soil",
-            walkable=False,
+            walkable=True,
             symbol=symbol,
             image_path=os.path.join(ASSETS_DIR, "soil.png")
         )
@@ -126,7 +126,7 @@ class BedTop(Tile):
     def __init__(self, symbol = '0'):
         super().__init__(
             tile_type="BedTop",
-            walkable=False,
+            walkable=True,
             symbol=symbol,
             image_path=os.path.join(ASSETS_DIR, "bedtop.png")
         )
@@ -135,7 +135,7 @@ class BedBottom(Tile):
     def __init__(self, symbol = '0'):
         super().__init__(
             tile_type="BedBottom",
-            walkable=False,
+            walkable=True,
             symbol=symbol,
             image_path=os.path.join(ASSETS_DIR, "bedbottom.png")
         )
@@ -144,7 +144,7 @@ class BenchTop(Tile):
     def __init__(self, symbol = '%'):
         super().__init__(
             tile_type="BenchTop", 
-            walkable=False,
+            walkable=True,
             symbol=symbol, 
             image_path=os.path.join(ASSETS_DIR, "benchtop.png")
         )
@@ -153,7 +153,7 @@ class BenchBottom(Tile):
     def __init__(self, symbol = '0'):
         super().__init__(
             tile_type="BenchBottom", 
-            walkable=False,
+            walkable=True,
             symbol=symbol, 
             image_path=os.path.join(ASSETS_DIR, "benchbottom.png")
         )

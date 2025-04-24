@@ -21,7 +21,7 @@ class Map:
                     self.grid[y_topleft + y][x_topleft + x] = tile_cls()
 
     def create_base_map(self):
-        # Grass base layer
+ # Grass base layer
         self.fill_tiles(0, 0, self.width, self.height, Grass)
         # River (Water)
         self.fill_tiles(0, 11, self.width, 3, Water)
@@ -122,6 +122,12 @@ class Map:
     def display(self):
         for row in self.grid:
             print(''.join(tile.symbol for tile in row))
+
+    def is_walkable(self, x: int, y: int) -> bool:
+        """True if (x, y) is on-map **and** its tile is walkable."""
+        if 0 <= x < self.width and 0 <= y < self.height:
+            return self.grid[y][x].walkable
+        return False
 
     def render_map(self, canvas, tile_size=32):
         """

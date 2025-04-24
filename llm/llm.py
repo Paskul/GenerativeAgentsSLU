@@ -10,7 +10,9 @@ load_dotenv(dotenv_path)
 openai_api_key = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=openai_api_key)
 
-def generate_action_plan(sim_time, sim_vision, agent, prev_action_plan=""):
+def generate_action_plan(sim_time, sim_vision, agent, prev_action_plan="", overseer_directives=None):
+    if overseer_directives is None:
+        overseer_directives = []
     """
     Generate a movement-level action plan for an agent, including a one-sentence speech.
     The output JSON must include these keys:
@@ -42,8 +44,10 @@ def generate_action_plan(sim_time, sim_vision, agent, prev_action_plan=""):
         f"- Agent position y: {agent.y}\n"
         f"- Agent vision: {sim_vision}\n"
         f"- Previous action plan: {prev_action_plan}\n"
-        f"- Current daily plan: {daily_plan}\n\n"
-        "Output an action plan strictly in JSON format with exactly these keys:\n"
+        f"- Current daily plan: {daily_plan}\n"
+        f"- Overseer directives (the user wants attempts to apply these to agent plans!): "
+        f"{', '.join(overseer_directives) if overseer_directives else 'None'}\n\n"
+        "Output an action plan strictly in JSON format with exactly these keys:\n\n"
         "  \"name\": string,\n"
         "  \"goalxy\": [int, int],\n"
         "  \"direction\": string (one of \"up\", \"down\", \"left\", \"right\"),\n"
