@@ -1,6 +1,6 @@
 # GenerativeAgents
 
-## before running, you must ensure an OPENAI_API_KEY is set in a .env file in your cloned directory
+## before running, you must ensure an OPENAI_API_KEY is set in a .env file in your cloned directory, AND custom font is installed
 
 Current required commands for package installs:
 ```
