@@ -1,6 +1,6 @@
 # environment/map.py
 
-from .tile import Grass, Water, Soil, Bridge, Bush, Wall, Path, Floor, Sand, BedTop, BedBottom, BenchTop, BenchBottom
+from .tile import Grass, Water, Soil, Bridge, Bush, Wall, Path, Floor, Sand, BedTop, BedBottom, BenchTop, BenchBottom, CounterBottom, CounterMiddle, CounterTop, BinApple, BinCucumber, BinEggplant, BinPotato
 
 class Map:
     def __init__(self, width=48, height=27):
@@ -54,6 +54,7 @@ class Map:
         self.fill_tiles(15, 6, 19, 1, Path)
         self.fill_tiles(8, 10, 3, 1, Path)
         self.fill_tiles(37, 9, 3, 2, Path)
+        self.fill_tiles(19,4,1,2,Path)
         # Bushes
         self.set_tile(5, 7, Bush)
         self.set_tile(6, 5, Bush)
@@ -78,6 +79,23 @@ class Map:
         self.set_tile(12,2,BedBottom)
         self.set_tile(17,1,BedTop) # Bed #4
         self.set_tile(17,2,BedBottom)
+        # Benches
+        self.set_tile(32,3,BenchTop) # Bench 1
+        self.set_tile(32,4,BenchBottom)
+        self.set_tile(32,8,BenchTop) # Bench 2
+        self.set_tile(32,9,BenchBottom)
+        # Store Counter
+        self.set_tile(44,4,CounterTop)
+        self.set_tile(44,5,CounterMiddle)
+        self.set_tile(44,6,CounterBottom)
+        # Store Potato Shelf
+        self.fill_tiles(36,3,1,5,BinPotato)
+        # Store Eggplant Shelf
+        self.fill_tiles(38,3,1,5,BinEggplant)
+        # Store Cucumber Shelf
+        self.fill_tiles(40,3,1,5,BinCucumber)
+        # Store Apple Shelf
+        self.fill_tiles(42,3,1,5,BinApple)
 
     def get_layout_summary(self):
         """

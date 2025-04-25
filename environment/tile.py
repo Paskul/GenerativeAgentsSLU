@@ -157,3 +157,66 @@ class BenchBottom(Tile):
             symbol=symbol, 
             image_path=os.path.join(ASSETS_DIR, "benchbottom.png")
         )
+
+class CounterBottom(Tile):
+    def __init__(self,symbol = '|'):
+        super().__init__(
+            tile_type="CounterBottom",
+            walkable=False,
+            symbol=symbol,
+            image_path=os.path.join(ASSETS_DIR, "counterbottom.png")
+        )
+
+class CounterMiddle(Tile):
+    def __init__(self,symbol = '|'):
+        super().__init__(
+            tile_type="CounterMiddle",
+            walkable=False,
+            symbol=symbol,
+            image_path=os.path.join(ASSETS_DIR, "countermiddle.png")
+        )
+
+class CounterTop(Tile):
+    def __init__(self,symbol = '|'):
+        super().__init__(
+            tile_type="CounterTop",
+            walkable=False,
+            symbol=symbol,
+            image_path=os.path.join(ASSETS_DIR, "countertop.png")
+        )
+
+class BinApple(Tile):
+    def __init__(self,symbol = '@'):
+        super().__init__(
+            tile_type="BinApple",
+            walkable=False,
+            symbol=symbol,
+            image_path=os.path.join(ASSETS_DIR, "binapple.png")
+        )
+        
+class BinCucumber(Tile):
+    def __init__(self,symbol = '@'):
+        super().__init__(
+            tile_type="BinCucumber",
+            walkable=False,
+            symbol=symbol,
+            image_path=os.path.join(ASSETS_DIR, "bincucumber.png")
+        )
+
+class BinEggplant(Tile):
+    def __init__(self,symbol = '@'):
+        super().__init__(
+            tile_type="BinEggplant",
+            walkable=False,
+            symbol=symbol,
+            image_path=os.path.join(ASSETS_DIR, "bineggplant.png")
+        )
+
+class BinPotato(Tile):
+    def __init__(self,symbol = '@'):
+        super().__init__(
+            tile_type="BinPotato",
+            walkable=False,
+            symbol=symbol,
+            image_path=os.path.join(ASSETS_DIR, "binpotato.png")
+        )
