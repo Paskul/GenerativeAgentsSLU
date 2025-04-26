@@ -220,3 +220,48 @@ class BinPotato(Tile):
             symbol=symbol,
             image_path=os.path.join(ASSETS_DIR, "binpotato.png")
         )
+
+class TreeOak(Tile):
+    def __init__(self,symbol = '5'):
+        super().__init__(
+            tile_type="TreeOak",
+            walkable=False,
+            symbol=symbol,
+            image_path=os.path.join(ASSETS_DIR, "treeoak.png")
+        )
+
+class TreePine(Tile):
+    def __init__(self,symbol = '5'):
+        super().__init__(
+            tile_type="TreePine",
+            walkable=False,
+            symbol=symbol,
+            image_path=os.path.join(ASSETS_DIR, "treepine.png")
+        )
+
+class TreeOrange(Tile):
+    def __init__(self,symbol = '5'):
+        super().__init__(
+            tile_type="TreeOrange",
+            walkable=False,
+            symbol=symbol,
+            image_path=os.path.join(ASSETS_DIR, "treeorange.png")
+        )
+
+class TreePink(Tile):
+    def __init__(self,symbol = '5'):
+        super().__init__(
+            tile_type="TreePink",
+            walkable=False,
+            symbol=symbol,
+            image_path=os.path.join(ASSETS_DIR, "treepink.png")
+        )
+
+class TreePurple(Tile):
+    def __init__(self,symbol = '5'):
+        super().__init__(
+            tile_type="TreePurple",
+            walkable=False,
+            symbol=symbol,
+            image_path=os.path.join(ASSETS_DIR, "treepurple.png")
+        )
