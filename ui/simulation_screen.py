@@ -11,6 +11,17 @@ from GenerativeAgents.environment.map      import Map
 from GenerativeAgents.simulation.sim_manager import SimulationManager
 from GenerativeAgents.agents.agent         import Agent
 
+agent_specs = [
+        ("Ada",   "Farmer",    29, "Smart",      2,  2),
+        ("Gus",   "Fisherman", 32, "Shy",        5,  5),
+        ("Clara", "ShopOwner", 40, "Friendly",   8,  2),
+        ("Otto",  "ShopOwner",  4, "Persuasive",10,  6),
+        ("Alan",  "Farmer",    57, "Grumpy",    14,  4),
+        ("Olive", "Artisan",   30, "Creative",  17,  8),
+        ("Mavis", "Farmer",    25, "Bubbly",    20, 9),
+        ("Finn",  "Student",    9, "Hyper",     24, 9)
+    ]
+
 # ---------------------------------------------------------------- main entry
 def run_simulation() -> None:
     # ---------- window -------------------------------------------------------
@@ -31,16 +42,6 @@ def run_simulation() -> None:
     game_map.render_map(canvas, tile_size=tile_size)
 
     # ---------- agents ------------------------------------------------------
-    agent_specs = [
-        ("Ada",   "Farmer",    29, "Smart",      2,  2),
-        ("Gus",   "Fisherman", 32, "Shy",        5,  5),
-        ("Clara", "ShopOwner", 40, "Friendly",   8,  2),
-        ("Otto",  "ShopOwner",  4, "Persuasive",10,  6),
-        ("Alan",  "Farmer",    57, "Grumpy",    14,  4),
-        ("Olive", "Artisan",   30, "Creative",  17,  8),
-        ("Mavis", "Farmer",    25, "Bubbly",    20, 9),
-        ("Finn",  "Student",    9, "Hyper",     24, 9)
-    ]
     agents = [Agent(*spec, vision_radius=5) for spec in agent_specs]
 
     # ---------- sprite map --------------------------------------------------
