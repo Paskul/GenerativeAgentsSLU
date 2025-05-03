@@ -6,22 +6,25 @@ class Map:
     def __init__(self, width=48, height=27):
         self.width = width
         self.height = height
-        # Create a grid filled with Grass by default
+        # grass filled by default
+        # however, we edit in changes to tiles
         self.grid = [[Grass() for _ in range(width)] for _ in range(height)]
         self.create_base_map()
 
     def set_tile(self, x, y, tile_cls):
+        # set one tile
         if 0 <= x < self.width and 0 <= y < self.height:
             self.grid[y][x] = tile_cls()
 
     def fill_tiles(self, x_topleft, y_topleft, width, height, tile_cls):
+        # set multiple tiles at once
         for y in range(height):
             for x in range(width):
                 if 0 <= x_topleft + x < self.width and 0 <= y_topleft + y < self.height:
                     self.grid[y_topleft + y][x_topleft + x] = tile_cls()
 
     def create_base_map(self):
- # Grass base layer
+        # Grass base layer
         self.fill_tiles(0, 0, self.width, self.height, Grass)
         # River (Water)
         self.fill_tiles(0, 11, self.width, 3, Water)
@@ -120,35 +123,12 @@ class Map:
         self.set_tile(31,0,TreePurple)
 
     def get_layout_summary(self):
-        """
-        Provides a detailed overview of this 48x27 map, specifying
-        major features and their coordinates.
-        
-        Coordinate System:
-        - x ranges from 0 (left) to 47 (right)
-        - y ranges from 0 (top) to 26 (bottom)
-        - (x=0, y=0) is top-left corner
-
-        Features:
-        - River (Water): spans rows y=11..13 (full width x=0..47).
-        - Bridges:
-            1) x=8..10, y=11..13
-            2) x=37..39, y=11..13
-        - Apartments (top-left):
-            - Large walled area from x=0..20, y=0..4
-            - Another walled block from x=0..4, y=5..9
-            - Floors at x=1..4,7..9,12..14,17..19 (y=1..3) and x=1..3 (y=6..8)
-        - Store (top-right):
-            - Walls from x=33..46, y=1..9
-            - Floors from x=34..45, y=2..8
-        - Farm Patches (Soil) near bottom:
-            - (x=1..5, y=15..19), (x=1..5, y=21..25),
-                (x=7..11, y=21..25), (x=13..17, y=21..25), (x=19..23, y=21..25)
-        - Beach (Sand) around x=14..32, y=14..16 (middle-bottom).
-        - Bushes scattered near (x=6..20, y=5..7), e.g., x=5,6,8,10,13,15,18,20 (y=5 or y=7).
-        - Paths connect apartments, store, and farmland.
-        - Grass is the base tile everywhere else.
-        """
+        # Provides a detailed overview of this 48x27 map stating major features and their coordinates.
+        #Coordinate System:
+        #- x ranges from 0 (left) to 47 (right)
+        #- y ranges from 0 (top) to 26 (bottom)
+        #- (x=0, y=0) is top-left corner
+        # used for LLM
         return (
             "This map is 48 tiles wide (x=0..47) and 27 tiles tall (y=0..26). "
             "Rows y=11..13 contain a river that spans the entire width. Bridges cross the river at x=8..10 and x=37..39, y=11..13. "
@@ -160,20 +140,20 @@ class Map:
         )
 
     def display(self):
+        # reference to map grid in text format
         for row in self.grid:
             print(''.join(tile.symbol for tile in row))
 
     def is_walkable(self, x: int, y: int) -> bool:
-        """True if (x, y) is on-map **and** its tile is walkable."""
+        # True if (x, y) is on-map **and** its tile is walkable.
         if 0 <= x < self.width and 0 <= y < self.height:
             return self.grid[y][x].walkable
         return False
 
     def render_map(self, canvas, tile_size=32):
-        """
-        Renders the map's tiles onto the given Tkinter canvas.
-        Each tile is drawn at (x * tile_size, y * tile_size).
-        """
+        # Renders the map's tiles onto the given Tkinter canvas.
+        # Each tile is drawn at (x * tile_size, y * tile_size).
+        
         # Initialize a list to store references to tile images
         if not hasattr(canvas, 'image_refs'):
             canvas.image_refs = []
