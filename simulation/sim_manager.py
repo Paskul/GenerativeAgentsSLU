@@ -22,7 +22,7 @@ class SimulationManager:
         self.active       = True
         self.step_count   = 0
 
-        # --- UI shared logs & directives --------------------------------------
+        # UI shared logs & directives
         self.message_log: list[str]  = ["Waiting for agents to generate action plans…"]
         self.overseer_directives: list[dict] = []       
         self.daily_ready = False
@@ -33,13 +33,13 @@ class SimulationManager:
                 if a is not b:
                     a.relationships.setdefault(b.name, 0)
 
-    # ---------------------------------------------------------------- overseer
+    # overseer
     def add_directive(self, text: str) -> None:
         """Store a directive from the player and log it."""
         self.overseer_directives.append({"text": text, "ttl": 2})
         self.add_message(text, "Overseer")
 
-    # ---------------------------------------------------------------- utilities
+    # utilities (message, and then cleaning the LLM)
     def add_message(self, text: str, speaker: Optional[str] = None) -> None:
         line = f"{speaker}: {text}" if speaker else text
         self.message_log.append(line)
@@ -55,7 +55,8 @@ class SimulationManager:
                 text = text[4:].strip()
         return text
 
-    # ---------------------------------------------------------------- daily planning
+    # daily planning for each new day
+    # (24 hours, many more time steps likely)
     def update_daily_plans(self, now):
         """Generate daily plans (one per agent) concurrently; no overseer input."""
         self.daily_ready = False
@@ -67,7 +68,8 @@ class SimulationManager:
         pending = [a for a in self.agents
                    if getattr(a, "daily_plan_date", None) != now.date()]
 
-        if not pending:            # everyone already has today’s plan
+        # everyone already has today’s plan
+        if not pending:            
             self.daily_ready = True
             return
 
@@ -98,16 +100,18 @@ class SimulationManager:
                 except Exception as e:
                     print(f"Daily-plan JSON error for {ag.name}:", e)
 
+        # daily done, time for micro
         self.daily_ready = True
 
-    # ---------------------------------------------------------------- micro planning
+    # micro planning
     def update_agent(self, ag, now, directives):
         vision    = ag.get_visible_entities(self.environment, self.agents)
         prev_plan = getattr(ag, "prev_action_plan", "")
         raw = generate_action_plan(
             now.strftime("%H:%M"), vision, ag, prev_plan,
-            directives                        # ← pass only micro-step directives
+            directives                        # pass only micro-step directives
         )
+        # failsafe, no plan - don't act
         if not raw:
             return
 
@@ -142,7 +146,7 @@ class SimulationManager:
             ag.prev_action_plan = fb
             self.add_message(fb)
 
-        # quick relationship tweak
+        # quick relationship tweak for nulls
         sl = speech.lower()
         for other in self.agents:
             if other is not ag and other.name.lower() in sl:
@@ -154,18 +158,20 @@ class SimulationManager:
         self.step_count += 1
         self.update_daily_plans(now)                 # daily plans get *no* directives
 
-        # -------- list of texts still alive ---------
+        # list of texts still alive
         current_dir = [d["text"] for d in self.overseer_directives]
 
         with ThreadPoolExecutor(max_workers=len(self.agents)) as tp:
             tp.map(lambda a: self.update_agent(a, now, current_dir), self.agents)
 
-        # -------- decrement TTL and purge ----------
+        # decrement TTL and purge 
+        # TTL only needed with overseer tasks,
+        # ex. Overseer command lasts for 2 micro-plan turns in TLL = 2 (default)
         for d in self.overseer_directives:
             d["ttl"] -= 1
         self.overseer_directives = [d for d in self.overseer_directives if d["ttl"] > 0]
 
-    # ---------------------------------------------------------------- rendering
+    # rendering
     def render_agents(self, canvas, tile_size: int,
                       sprite_map: dict[str, "tk.PhotoImage"]):
         name_fnt   = tkFont.Font(family="Pixellari", size=8)
