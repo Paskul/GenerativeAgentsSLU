@@ -27,35 +27,21 @@ class Agent:
             self.x += 1
 
     def update_relationship(self, other_agent, delta):
-        """
-        Adjust the relationship score with another agent.
-        
-        :param other_agent: The other Agent object.
-        :param delta: The amount to add (or subtract) from the relationship score.
-        For example, a positive delta can indicate a positive interaction,
-        and a negative delta a negative interaction.
-        Relationship values can optionally be clamped (here between -100 and 100).
-        """
+        # Update the relationship status between agents
+        # positive delta indicates an increased relationship
+        # clamped between -100 and 100 (more is better)
+        # WARNING - NOT USED WELL IN FINAL PRODUCT
         current = self.relationships.get(other_agent.name, 0)
         new_value = current + delta
-        # Clamp relationship value between -100 and 100 (optional).
+        # Clamp
         new_value = max(-100, min(new_value, 100))
         self.relationships[other_agent.name] = new_value
         print(f"{self.name}'s relationship with {other_agent.name} updated to {new_value}")
 
     def get_visible_entities(self, game_map, other_agents):
-        """
-        Scan the surrounding area (within vision_radius) for key tiles and other agents.
-        
-        Returns a dictionary:
-          - 'tiles': List of tuples (tile_type, (x, y)) for key tiles (e.g., non-grass).
-          - 'agents': List of dictionaries for other agents in view. Each dictionary includes:
-                • "name": the agent's name,
-                • "position": (x, y) coordinates,
-                • "speech": the agent’s current speech message (if any).
-        
-        The scanning region is based on this agent's current position as the center.
-        """
+        # scan the surrounding area in vision_radius
+        # looks for tiles and other agents
+        # based on agents current position as center
         visible = {'tiles': [], 'agents': []}
         x0, y0 = self.x, self.y
         radius = self.vision_radius
