@@ -13,14 +13,13 @@ client = OpenAI(api_key=openai_api_key)
 def generate_action_plan(sim_time, sim_vision, agent, prev_action_plan="", overseer_directives=None):
     if overseer_directives is None:
         overseer_directives = []
-    """
-    Generate a movement-level action plan for an agent, including a one-sentence speech.
-    The output JSON must include these keys:
-      - "name": string,
-      - "goalxy": [int, int],
-      - "direction": string (one of "up", "down", "left", "right"),
-      - "speech": string (a one-sentence statement).
-    """
+    # Generate a movement-level action plan for an agent, including a one-sentence speech.
+    #The output JSON must include these keys:
+    #  - "name": string,
+    #  - "goalxy": [int, int],
+    #  - "direction": string (one of "up", "down", "left", "right"),
+    #  - "speech": string (a one-sentence statement).
+    
     # Retrieve the agent's current daily plan; if none exists, use "None"
     daily_plan = getattr(agent, "daily_plan", "None")
     
@@ -70,13 +69,11 @@ def generate_action_plan(sim_time, sim_vision, agent, prev_action_plan="", overs
 
 
 def generate_daily_action_plan(sim_date, env_summary, agent, prev_daily_plan=""):
-    """
-    Generate a daily action plan for an agent outlining the overall objectives for the day.
-    The output JSON should include:
-      - "name": the agent's name,
-      - "daily_plan": a string representing the overall objectives for the day, including
-                      recommended timestamps for when tasks should be attempted.
-    """
+    #Generate a daily action plan for an agent outlining the overall objectives for the day.
+    #The output JSON should include:
+    #  - "name": the agent's name,
+    #  - "daily_plan": a string representing the overall objectives for the day, including recommended timestamps for when tasks should be attempted.
+    
     message = (
         "You are creating a daily action plan for an agent in a Generative Agents Simulator. "
         "The daily action plan should outline the overall objectives for the day—such as tasks to complete, "
