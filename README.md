@@ -14,7 +14,7 @@ Required font download, navigate to:
 ```
 Then run that .ttf file, all it does is install the Pixellari font locally on your computer so the OS (and tinker) recognizes it as a font to use in Python.
 
-To run, make the .env (for devs, found in our Google Drive!!), and then move to the terminal to the directory of the parent folder to GenerativeAgents (ie, parentFolder/GenerativeAgents). For non-devs, examples of how to do this can be found [here](www.google.com(https://devcracker.medium.com/how-to-add-a-link-or-hyperlink-in-readme-md-file-68752bb6499e)
+To run, make the .env (for devs, found in our Google Drive!!), and then move to the terminal to the directory of the parent folder to GenerativeAgents (ie, parentFolder/GenerativeAgents). For non-devs, examples of how to do this can be found [here](https://devcracker.medium.com/how-to-add-a-link-or-hyperlink-in-readme-md-file-68752bb6499e)
 
 Make sure you are in the parent folder, as an example of
 ```
