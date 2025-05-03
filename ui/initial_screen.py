@@ -14,7 +14,7 @@ def show_help():
     win.title("Help & Agents Info")
     win.geometry("500x600")
 
-    # Create canvas + scrollbar for scrolling content
+    # making canvas + scrollbar for scrolling content
     canvas = tk.Canvas(win, borderwidth=0)
     scrollbar = tk.Scrollbar(win, orient="vertical", command=canvas.yview)
     scroll_frame = tk.Frame(canvas)
@@ -27,7 +27,8 @@ def show_help():
     canvas.pack(side="left", fill="both", expand=True)
     scrollbar.pack(side="right", fill="y")
 
-    # ——— Original Help Text ————————————————————————————————
+    # Original Help Text 
+    # NOT USED, we have better 
     help_text = (
         "How to operate the simulation:\n\n"
         "- Click 'New Simulation' to start a fresh simulation.\n\n"
@@ -45,7 +46,7 @@ def show_help():
         wraplength=360
     ).pack(fill="x", padx=10, pady=(10, 20))
 
-    # ——— Agent Portraits + Descriptions ————————————————————————
+    # agent portraits + descriptions 
     for name, role, age, pers, *_ in agent_specs:
         row = tk.Frame(scroll_frame, pady=5)
         row.pack(fill="x", padx=10)
@@ -75,15 +76,20 @@ def show_help():
             wraplength=300
         ).pack(side="left", fill="x")
 
-    win.transient(root)   # keep on top of main
-    win.grab_set()        # block interaction until closed
+    # keep on top of main
+    win.transient(root)  
+    
+    # block interaction until closed
+    win.grab_set()        
 
 
 def exit_application(root):
+    # on exit button
     root.quit()
 
 
 def toggle_full_screen(root, is_full):
+    # DOES NOT WORK, windowed is always okay..
     is_full = not is_full
     root.attributes("-fullscreen", is_full)
     return is_full
@@ -95,11 +101,12 @@ def update_help_button_position(root, btn):
 
 
 def run_initial_screen():
+    # create start screen with buttons and functionality
     global root
     root = tk.Tk()
     root.title("Generative Agents Simulation - Main Menu")
 
-    # ——— Load + size to background.png —————————————————————————
+    # load + size to background.png
     bg_path = os.path.join(ASSETS_DIR, "background.png")
     try:
         bg_img = tk.PhotoImage(file=bg_path)
@@ -113,11 +120,12 @@ def run_initial_screen():
         print("Warning loading background:", e)
         root.geometry("800x600")
 
-    # ——— Fullscreen toggle ——————————————————————————————————
+    # fullscreen toggle
+    # BAD right now - use windowed
     is_full = False
     root.bind("<F11>", lambda e: toggle_full_screen(root, is_full))
 
-    # ——— Exit button —————————————————————————————————————
+    # exit button
     exit_btn = tk.Button(
         root, text="Exit",
         command=lambda: exit_application(root),
@@ -126,7 +134,7 @@ def run_initial_screen():
     )
     exit_btn.place(x=10, y=10)
 
-    # ——— Help button —————————————————————————————————————
+    # help button
     help_btn = tk.Button(
         root, text="?",
         command=show_help,
@@ -136,7 +144,8 @@ def run_initial_screen():
     help_btn.place(x=root.winfo_width()-help_btn.winfo_reqwidth()-10, y=10)
     root.bind("<Configure>", lambda e: update_help_button_position(root, help_btn))
 
-    # ——— New Simulation button ————————————————————————————
+    # New Simulation button
+    # starts sim screen in run_simulation
     frame = tk.Frame(root, highlightthickness=0)
     frame.place(relx=0.5, rely=0.5, anchor="center")
 
