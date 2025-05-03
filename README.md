@@ -16,7 +16,7 @@ Then run that .ttf file, all it does is install the Pixellari font locally on yo
 
 To run, make the .env (for devs, found in our Google Drive!!), and then move to the terminal to the directory of the parent folder to GenerativeAgents (ie, parentFolder/GenerativeAgents). For non-devs, examples of how to do this can be found [here](https://learn.griptape.ai/latest/setup/02_openai/)
 
-Make sure you are in the parent folder, as an example of
+Make sure you are in the directory of the parent folder, as an example of
 ```
 C:\Users\pascal\parentFolder
 ```
