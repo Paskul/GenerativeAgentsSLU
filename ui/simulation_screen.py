@@ -11,6 +11,7 @@ from GenerativeAgents.environment.map      import Map
 from GenerativeAgents.simulation.sim_manager import SimulationManager
 from GenerativeAgents.agents.agent         import Agent
 
+# create agents, used in init screen as well
 agent_specs = [
         ("Ada",   "Farmer",    29, "Smart",      2,  2),
         ("Gus",   "Fisherman", 32, "Shy",        5,  5),
@@ -22,9 +23,9 @@ agent_specs = [
         ("Finn",  "Student",    9, "Hyper",     24, 9)
     ]
 
-# ---------------------------------------------------------------- main entry
+# main entry
 def run_simulation() -> None:
-    # ---------- window -------------------------------------------------------
+    # create tk window of sim itself
     sim_root = tk.Tk()
 
     sim_root.title("Generative Agents Simulation – Map")
@@ -33,7 +34,7 @@ def run_simulation() -> None:
     window_w, window_h = map_width * tile_size, map_height * tile_size
     sim_root.geometry(f"{window_w}x{window_h}")
 
-    # ---------- static canvas + map -----------------------------------------
+    # static canvas + map
     canvas = tk.Canvas(sim_root, width=window_w, height=window_h,
                        bd=0, highlightthickness=0)
     canvas.pack(fill=tk.BOTH, expand=True)
@@ -41,14 +42,16 @@ def run_simulation() -> None:
     game_map = Map(width=map_width, height=map_height)
     game_map.render_map(canvas, tile_size=tile_size)
 
-    # ---------- agents ------------------------------------------------------
+    # agents
     agents = [Agent(*spec, vision_radius=5) for spec in agent_specs]
 
-    # ---------- sprite map --------------------------------------------------
+    # sprite map
     base_dir   = os.path.dirname(os.path.abspath(__file__))
     assets_dir = os.path.join(base_dir, "..", "assets")
     sprite_map: dict[str, tk.PhotoImage] = {}
 
+
+    # render agents to map, this is hard
     for name, *_ in agent_specs:
         p = os.path.join(assets_dir, f"{name}.png")
         try:
@@ -62,14 +65,15 @@ def run_simulation() -> None:
         except Exception:
             sprite_map[name] = None
 
-    # ---------- simulation manager ------------------------------------------
+    # simulation manager
     sim_manager = SimulationManager(
         agents=agents,
         environment=game_map,
         time_step=timedelta(minutes=10)
     )
 
-    # ---------- helper: pixel-accurate wrapper ------------------------------
+    # helper: pixel-accurate wrapper
+    # correct for device specific
     def wrap_pixel(text: str, max_px: int, font: tkFont.Font) -> list[str]:
         words, lines, cur = text.split(), [], ""
         for w in words:
@@ -84,14 +88,14 @@ def run_simulation() -> None:
             lines.append(cur)
         return lines or [""]
 
-    # ---------- UI update ----------------------------------------------------
+    # UI update
     def update_ui() -> None:
         canvas.delete("agent_layer", "clock_layer", "speech_log_layer")
 
-        # ---- agents & bubbles ---------------------------------------------------
+        # agents & bubbles
         sim_manager.render_agents(canvas, tile_size, sprite_map)
 
-        # ---- outlined clock (top-right) ----------------------------------------
+        # outlined clock (top-right)
         clock_txt = sim_manager.time_manager.current_time.strftime("%H:%M")
         clk_fnt   = tkFont.Font(family="Pixellari", size=24)
         cx, cy = window_w - 20, 20
@@ -103,7 +107,7 @@ def run_simulation() -> None:
                         text=clock_txt, fill="white",
                         font=clk_fnt, tags="clock_layer")
 
-        # ---- transparent speech area (lower-right) -----------------------------
+        # transparent speech area (lower-right)
         pad, line_gap, box_w = 10, 2, 640
         bold_fnt   = tkFont.Font(family="Pixellari", size=12, weight="bold")
         normal_fnt = tkFont.Font(family="Pixellari", size=12)
@@ -126,7 +130,7 @@ def run_simulation() -> None:
                 lines.append((lab if idx == 0 else "", seg, name_px))
 
         total_h = len(lines) * line_h + 2*pad
-        input_h = 36                            # ≈ height of overseer entry box
+        input_h = 36                            # height of overseer entry box
         x0 = window_w - box_w - 10              # 10-px right margin
         y0 = window_h - input_h - total_h  # 0-px gap above entry box ( -x appended if x was px gap)
         y  = y0 + pad
@@ -146,7 +150,7 @@ def run_simulation() -> None:
             draw_outlined(x0+pad+n_px, y, seg, normal_fnt)
             y += line_h
 
-    # ---------- background simulation thread ---------------------------------
+    # background simulation thread to prevent UI freezes
     def sim_loop() -> None:
         while True:
             sim_manager.step()
@@ -156,7 +160,7 @@ def run_simulation() -> None:
     Thread(target=sim_loop, daemon=True).start()
     update_ui()
 
-    # ---------- overseer input box -------------------------------------------
+    # overseer input box
     input_frame = tk.Frame(sim_root)
     input_frame.place(relx=1.0, rely=1.0, x=-10, y=-10, anchor="se")  # 10-px margin
 
@@ -175,10 +179,8 @@ def run_simulation() -> None:
             font=("Pixellari", 12), command=send_cmd).pack(side="left", padx=4)
     entry.bind("<Return>", send_cmd)
 
-    # -------------------------------------------------------------------------
     sim_root.mainloop()
 
 
-# ---------------------------------------------------------------- stand-alone
 if __name__ == "__main__":
     run_simulation()
