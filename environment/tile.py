@@ -18,13 +18,14 @@ class Tile:
             self.set_image(image_path)
 
     def set_image(self, image_path):
+        # assign image to tile in render
         try:
             self.image = Image.open(image_path)
         except IOError:
             print(f"Error: Unable to load image from {image_path}")
 
     def display_image(self, canvas: tk.Canvas, x: int, y: int, tile_size=32):
-        """Resize and display this tile’s image on the canvas at (x, y)."""
+        # render image through resize and display on canvas at image (x,y)
         if self.image:
             img = self.image.resize((tile_size, tile_size), Image.ANTIALIAS)
             tk_img = ImageTk.PhotoImage(img)
