@@ -2,7 +2,7 @@
 
 ## before running, you must ensure an OPENAI_API_KEY is set in a .env file in your cloned directory, AND custom font is installed
 
-Current required commands for package installs:
+Current required commands for package installs. This also assumes you are running on an Anaconda interpreter of Python (to deal with other required packages):
 ```
 pip install openai
 pip install python-dotenv
@@ -18,11 +18,11 @@ To run, make the .env (for devs, found in our Google Drive!!), and then move to 
 
 Make sure you are in the parent folder, as an example of
 ```
-C:\Users\pascal\Desktop\code\parentFolder
+C:\Users\pascal\parentFolder
 ```
 NOT
 ```
-C:\Users\pascal\Desktop\code\parentFolder\GenerativeAgents
+C:\Users\pascal\parentFolder\GenerativeAgents
 ```
 
 Then run this code to start the program:
