@@ -1,5 +1,8 @@
 # GenerativeAgents
 
+![background](https://github.com/Paskul/GenerativeAgents/blob/GenerativeAgents/assets/background.PNG?raw=true)
+
+
 ## before running, you must ensure an OPENAI_API_KEY is set in a .env file in your cloned directory, AND custom font is installed
 
 Current required commands for package installs. This also assumes you are running on an Anaconda interpreter of Python (to deal with other required packages):
