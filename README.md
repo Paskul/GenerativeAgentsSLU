@@ -1,6 +1,6 @@
 # GenerativeAgents
 
-![background](https://github.com/Paskul/GenerativeAgents/blob/GenerativeAgents/assets/background.PNG?raw=true)
+![background](https://github.com/Paskul/GenerativeAgents/assets/background.PNG?raw=true)
 
 
 ## before running, you must ensure an OPENAI_API_KEY is set in a .env file in your cloned directory, AND custom font is installed
