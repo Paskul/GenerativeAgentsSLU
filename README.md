@@ -2,6 +2,7 @@
 
 ![background](https://cdn.discordapp.com/attachments/272520065176567809/1370799728736075878/background.png?ex=6820d03b&is=681f7ebb&hm=733c85703ec935b5c79b75697036c430487f19ac7481b069768f67f733ab82e1&)
 
+Made for SLU CSCI 3300 - Software Engineering. Built around ideas from Joon Sung Park's initial [Generative Agents paper](https://arxiv.org/abs/2304.03442). We have a twist of adding an "overseer" functionality, and create agent pathfinding decisions through the LLM black box without any shortest path calculation.
 
 ## before running, you must ensure an OPENAI_API_KEY is set in a .env file in your cloned directory, AND custom font is installed
 
