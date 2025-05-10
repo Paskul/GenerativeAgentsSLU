@@ -1,6 +1,6 @@
 # GenerativeAgents
 
-![background](https://github.com/Paskul/GenerativeAgents/assets/background.PNG?raw=true)
+![background](https://cdn.discordapp.com/attachments/272520065176567809/1370799728736075878/background.png?ex=6820d03b&is=681f7ebb&hm=733c85703ec935b5c79b75697036c430487f19ac7481b069768f67f733ab82e1&)
 
 
 ## before running, you must ensure an OPENAI_API_KEY is set in a .env file in your cloned directory, AND custom font is installed
