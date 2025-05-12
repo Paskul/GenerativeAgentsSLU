@@ -1,6 +1,6 @@
 # GenerativeAgents
 
-![background](/assets/background.png)
+![background](/assets/background.PNG)
 
 Built around ideas from Joon Sung Park's initial [Generative Agents paper](https://arxiv.org/abs/2304.03442). We have a twist of adding an "overseer" functionality, and create agent pathfinding decisions through the LLM black box without any shortest path calculation. Made for SLU CSCI 3300 - Software Engineering.
 
